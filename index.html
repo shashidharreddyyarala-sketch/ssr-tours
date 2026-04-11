@@ -37,18 +37,48 @@ nav a{
   font-weight:500;
 }
 
-/* SLIDER */
-.slider{
-  height:80vh;
-  background-size:cover;
-  background-position:center;
-  animation:slide 12s infinite;
+/* HERO SLIDER */
+.hero-slider{
+  position:relative;
+  height:85vh;
+  overflow:hidden;
 }
 
-@keyframes slide{
-  0%{background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');}
-  33%{background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');}
-  66%{background-image:url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86');}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.5s ease-in-out;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+.hero-content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:white;
+  z-index:2;
+  background:rgba(0,0,0,0.35);
+  padding:30px 40px;
+  border-radius:12px;
+  backdrop-filter:blur(4px);
+}
+
+.hero-content h2{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.hero-content p{
+  font-size:20px;
 }
 
 /* GENERAL */
@@ -59,6 +89,46 @@ nav a{
 h2{
   text-align:center;
   margin-bottom:30px;
+}
+
+/* VEHICLES */
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.vehicle-card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+  transition:.3s;
+}
+
+.vehicle-card:hover{
+  transform:translateY(-8px);
+}
+
+.vehicle-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.vehicle-info{
+  padding:15px;
+  text-align:center;
+}
+
+.btn{
+  background:#ff5a00;
+  color:white;
+  padding:10px;
+  border:none;
+  width:100%;
+  border-radius:6px;
+  cursor:pointer;
 }
 
 /* REVIEWS */
@@ -73,37 +143,6 @@ h2{
   padding:20px;
   border-radius:10px;
   box-shadow:0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:15px;
-}
-
-.gallery img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:12px;
-  transition:.3s;
-}
-
-.gallery img:hover{
-  transform:scale(1.05);
-}
-
-/* BUTTON */
-.btn{
-  background:#ff5a00;
-  color:white;
-  padding:12px;
-  border:none;
-  width:100%;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:16px;
 }
 
 /* CONTACT */
@@ -122,6 +161,7 @@ h2{
   box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
 
+/* MAP */
 .map-container{
   border-radius:10px;
   overflow:hidden;
@@ -157,44 +197,92 @@ footer{
 <h1>SSR Tours</h1>
 <nav>
 <a href="#">Home</a>
+<a href="#vehicles">Vehicles</a>
 <a href="#reviews">Reviews</a>
-<a href="#gallery">Fleet</a>
 <a href="#contact">Contact</a>
 </nav>
 </header>
 
-<div class="slider"></div>
+<!-- HERO SLIDER -->
+<div class="hero-slider">
+
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');"></div>
+
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1564507592333-c60657eea523');"></div>
+
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da');"></div>
+
+  <div class="hero-content">
+    <h2>Welcome to SSR Tours & Travel</h2>
+    <p>Explore the World, One Journey at a Time 🌍</p>
+  </div>
+
+</div>
 
 <div class="container">
+
+<h2 id="vehicles">Our Vehicles</h2>
+
+<div class="vehicle-grid">
+
+<div class="vehicle-card">
+<img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957">
+<div class="vehicle-info">
+<h3>Tempo Traveller</h3>
+<p>12+1 Seater AC</p>
+<a href="https://wa.me/919666747210?text=I want to book Tempo Traveller">
+<button class="btn">Book Vehicle</button>
+</a>
+</div>
+</div>
+
+<div class="vehicle-card">
+<img src="https://images.unsplash.com/photo-1564694202779-bc908c327862">
+<div class="vehicle-info">
+<h3>Luxury Bus</h3>
+<p>40 Seater AC</p>
+<a href="https://wa.me/919666747210?text=I want to book Luxury Bus">
+<button class="btn">Book Vehicle</button>
+</a>
+</div>
+</div>
+
+<div class="vehicle-card">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+<div class="vehicle-info">
+<h3>Mini Bus</h3>
+<p>24 Seater</p>
+<a href="https://wa.me/919666747210?text=I want to book Mini Bus">
+<button class="btn">Book Vehicle</button>
+</a>
+</div>
+</div>
+
+<div class="vehicle-card">
+<img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7">
+<div class="vehicle-info">
+<h3>Sedan Car</h3>
+<p>4 Seater</p>
+<a href="https://wa.me/919666747210?text=I want to book Sedan Car">
+<button class="btn">Book Vehicle</button>
+</a>
+</div>
+</div>
+
+</div>
 
 <h2 id="reviews">Customer Reviews</h2>
 
 <div class="reviews">
 <div class="review-box">⭐⭐⭐⭐⭐ Amazing service! Highly recommended.</div>
-<div class="review-box">⭐⭐⭐⭐ Very affordable and well planned trips.</div>
-<div class="review-box">⭐⭐⭐⭐⭐ Best travel experience ever!</div>
+<div class="review-box">⭐⭐⭐⭐ Very affordable and professional drivers.</div>
+<div class="review-box">⭐⭐⭐⭐⭐ Clean vehicles and on-time pickup!</div>
 </div>
 
-<h2 id="gallery">Our Vehicle Fleet</h2>
-
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1564694202779-bc908c327862" alt="Luxury Bus">
-<img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957" alt="Tempo Traveller">
-<img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7" alt="Luxury Car">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="Mini Bus">
-<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a" alt="Traveller Van">
-<img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" alt="Premium Vehicle">
-</div>
-
-<h2>UPI Payment</h2>
-
-<a href="upi://pay?pa=9666747210@upi&pn=SSR%20Tours&cu=INR">
-<button class="btn">Pay via UPI</button>
-</a>
-
-<h2 id="contact">Contact</h2>
+<h2 id="contact">Contact Us</h2>
 
 <div class="contact-grid">
+
 <div class="contact-box">
 📞 9666747210
 </div>
@@ -210,6 +298,7 @@ opp. Nandan Heights, Prem Nagar,<br>
 Bolarum, Secunderabad,<br>
 Telangana 500010
 </div>
+
 </div>
 
 <div class="map-container">
@@ -230,6 +319,17 @@ loading="lazy">
 </footer>
 
 <a class="whatsapp" href="https://wa.me/919666747210" target="_blank">💬</a>
+
+<script>
+let slides = document.querySelectorAll('.slide');
+let current = 0;
+
+setInterval(() => {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+}, 4000);
+</script>
 
 </body>
 </html>
